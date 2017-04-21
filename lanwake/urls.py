@@ -21,6 +21,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     url(r'^~admin/', admin.site.urls),
     url(r'^$', client_view.index, name='home'),
+    url(r'^wake/(\d+)/$', client_view.wake, name='wake'),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
 ]

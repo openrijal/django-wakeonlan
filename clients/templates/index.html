@@ -2,13 +2,33 @@
 
 {% block title %}Welcome, {{ username }}{% endblock %}
 
+{% block actions %}
+{% if loggedin %}
+<ul class="nav navbar-nav navbar-right">
+  <li><a href="/logout/">Logout</a></li>
+</ul>
+{% else %}
+<ul class="nav navbar-nav navbar-right">
+  <li><a href="/login/">Login</a></li>
+</ul>
+{% endif %}
+{% endblock %}
+
 {% block content %}
   <div class="row">
     <h4>Machines</h4>
     <div class="well page">
+    {% for machine in machines %}
       <p>
-        machine list here.
+        {{ machine.name }} ({{ machine.mac_addr }})
+        <a href="{% url 'wake' machine.id %}" role="btn" class="btn btn-primary">Wake Up</a>
       </p>
+
+    {% empty %}
+      <p>
+        Sorry, nothing is listed.
+      </p>
+    {% endfor %}
     </div>
   </div>
 {% endblock %}
