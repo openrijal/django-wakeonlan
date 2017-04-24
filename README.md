@@ -7,7 +7,7 @@ The assumptions are that the machine you are trying to turn on should have wakeo
 # Installation
 ## Install pip
 ```bash
-curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python -
+curl https://bootstrap.pypa.io/get-pip.py | python -
 ```
 
 ## Install virtualenv for virtual environment setup for the app
