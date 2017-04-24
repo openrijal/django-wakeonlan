@@ -50,6 +50,6 @@ python manage.py runserver
 ```
 
 Point your browser to http://127.0.0.1:8000/ and enjoy.
-Admin URL: http://127.0.0.1/~admin/
+Admin URL: http://127.0.0.1:8000/~admin/
 
 
