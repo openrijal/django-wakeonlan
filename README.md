@@ -5,11 +5,15 @@ This is a wakeonlan app on django. Uses wakeonlan python package and custom user
 The assumptions are that the machine you are trying to turn on should have wakeonlan feature enabled. It is a BIOS feature, so things will be different for different types of system. Google for your system and enable it.
 
 # Installation
+## Install pip
+```bash
+curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python -
+```
+
 ## Install virtualenv for virtual environment setup for the app
-Use your package manager to install the virtualenv package.
-eg: 
-* yum install virtualenv (RPM based systems)
-* apt-get install virtualenv (Debian based systems)
+```bash
+pip install virtualenv
+```
 
 ## Create the virtual env
 ```bash
