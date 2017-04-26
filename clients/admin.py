@@ -18,6 +18,23 @@ class ClientInline(admin.TabularInline):
 # Define a new User admin
 class UserAdmin(BaseUserAdmin):
     inlines = (ClientInline, )
+    fieldsets = (
+        (None, {
+            'fields': ('username', 'password')
+        }),
+        ('Personal info', {
+            'classes': ('collapse',),
+            'fields': ('first_name', 'last_name', 'email'),
+        }),
+        ('Permissions', {
+            'classes': ('collapse',),
+            'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
+        }),
+        ('Important dates', {
+            'classes': ('collapse',),
+            'fields': ('last_login', 'date_joined'),
+        }),
+    )
 
 # Re-register UserAdmin
 admin.site.unregister(User)
