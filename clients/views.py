@@ -8,6 +8,7 @@ from wakeonlan import wol
 @login_required(login_url='/login/')
 def index(request):
     is_loggedin = True if request.user.is_authenticated else False
+    is_admin = True if request.user.is_superuser else False
     username = request.user.username
 
     if request.user.is_superuser:
@@ -15,7 +16,7 @@ def index(request):
     else:
         clients = Client.objects.filter(user=request.user)
 
-    context = {'loggedin': is_loggedin, 'username': username, 'machines': clients}
+    context = {'is_loggedin': is_loggedin, 'is_admin': is_admin, 'username': username, 'machines': clients}
     return render(request, 'index.html', context)
 
 

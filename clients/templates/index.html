@@ -3,8 +3,11 @@
 {% block title %}Welcome, {{ username }}{% endblock %}
 
 {% block actions %}
-{% if loggedin %}
+{% if is_loggedin %}
 <ul class="nav navbar-nav navbar-right">
+  {% if is_admin %}
+  <li><a href="~admin/">Administration</a></li>
+  {% endif %}
   <li><a href="/logout/">Logout</a></li>
 </ul>
 {% else %}
@@ -18,17 +21,52 @@
   <div class="row">
     <h4>Machines</h4>
     <div class="well page">
-    {% for machine in machines %}
-      <p>
-        {{ machine.name }} ({{ machine.mac_addr }})
-        <a href="{% url 'wake' machine.id %}" role="btn" class="btn btn-primary">Wake Up</a>
-      </p>
-
-    {% empty %}
-      <p>
-        Sorry, nothing is listed.
-      </p>
-    {% endfor %}
+    {% if machines %}
+    <table class="table table-bordered table-striped table-responsive text-center">
+      <thead class="text-primary">
+        <td>
+          Machine Name
+        </td>
+        <td>
+          MAC Address
+        </td>
+        <td>
+          IP Address
+        </td>
+        <td>
+          Port
+        </td>
+        <td>
+          Actions
+        </td>
+      </thead>
+      <tbody>
+        {% for machine in machines %}
+          <td>
+            {{ machine.name }}
+          </td>
+          <td>
+            {{ machine.mac_addr }}
+          </td>
+          <td>
+            {{ machine.ip_addr }}
+          </td>
+          <td>
+            {{ machine.port }}
+          </td>
+          <td>
+            <a href="{% url 'wake' machine.id %}" class="btn btn-primary btn-sm">Wake Up</a>
+            <a href="rdp://{{ machine.ip_addr }}:{{ machine.port }}" class="btn btn-primary btn-sm">Connect</a>
+          </td>
+        </tbody>
+        {% empty %}
+          <p>
+            Sorry, nothing is listed.
+          </p>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
     </div>
   </div>
 {% endblock %}
