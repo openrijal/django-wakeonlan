@@ -9,4 +9,7 @@ class Client(models.Model):
     name = models.CharField(max_length=100, verbose_name="Name of Machine")
     mac_addr = models.CharField(max_length=20, verbose_name="MAC Address")
     ip_addr = models.CharField(max_length=20, verbose_name="IP Address")
-    port = models.IntegerField(max_length=5, verbose_name="Port")
+    port = models.IntegerField(verbose_name="Port")
+
+    def __str__(self):
+        return "%s 's %s" % (self.user, self.name)

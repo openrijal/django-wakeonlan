@@ -10,7 +10,7 @@ from .models import Client
 
 # Define an inline admin descriptor for Employee model
 # which acts a bit like a singleton
-class ClientInline(admin.StackedInline):
+class ClientInline(admin.TabularInline):
     model = Client
     can_delete = False
     verbose_name_plural = 'Clients'
